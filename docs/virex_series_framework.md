@@ -46,10 +46,22 @@ The **Series Manager** ensures that episodic progress is tracked as a unified gl
 
 ---
 
-## 6. Revision History & Audit
+## 6. ChroniQuest: Finalized Master Assets (v5.0 Lock)
+The following master assets have been human-approved and locked into the local repository as the canonical identities for **ChroniQuest**:
+
+- **Faris (Hero)**: `assets/characters/faris/faris_master.png`
+- **Merit (Guardian)**: `assets/characters/merit/merit_master.png`
+- **Father (Archaeologist)**: `assets/characters/faris_family/father_master.png`
+- **Mother (Linguist)**: `assets/characters/faris_family/mother_master.png`
+
+**Usage Rule**: These files must be used as the multimodal visual reference for every episode to ensure zero character drift.
+
+---
+
+## 7. Revision History & Audit
 - All assets and variants track **Revision History**.
 - If a voice profile is changed mid-series, the `updated_at` and `change_reason` are logged to preserve the lineage of the production evolution.
 
 ---
-*Virex Asset Governance v5.0 (Global Standards)*
+*Version: 5.0 (Global Identity Standards)*
 *Author: Virexa AI Architecture Hub*
