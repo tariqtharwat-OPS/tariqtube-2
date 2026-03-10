@@ -1,14 +1,20 @@
 # 🎬 TariqTube 2.0: The AI Content Factory
 
 ## 📋 Overview
-TariqTube 2.0 is a serverless, event-driven AI video production suite powered by **Google Cloud Platform**. It automates the creation of children's stories from script to YouTube upload using state-of-the-art Generative AI.
+TariqTube 2.0 is a serverless, event-driven AI video production suite powered by **Google Cloud Platform**. It automates the creation of children's stories from script to multi-platform distribution using state-of-the-art Generative AI.
+
+## 🏗️ Project-Centric Architecture
+TariqTube 2.0 operates on the principle that **Projects are the Source of Truth**. Unlike legacy systems that are bound to specific accounts, TariqTube 2.0 decouples production logic from distribution channels. This allows for:
+- Persistent character and world consistency across series.
+- Routing the same content to multiple channels (YouTube, TikTok, Instagram).
+- Scaleable production independent of publishing status.
 
 ## 🚀 Key Features
-- **Intelligent Scripting**: Powered by Gemini 1.5 Pro with long-term series memory.
-- **Cinematic Visuals**: High-fidelity frame generation using Imagen 3.
-- **Studio Narration**: Professional voice synthesis via Google Cloud TTS (Studio).
-- **Headless Publishing**: Direct YouTube API integration (no browser required).
-- **Scaleable Compute**: Cloud Run orchestration for parallel video rendering.
+- **Project Master State**: Centralized production logic in Firestore.
+- **Persistent Assets**: character, Environment, and Voice profiles linked to Projects.
+- **Multi-Type Content**: Automated generation of Episodes, Teasers, and Shorts from a single production unit.
+- **Headless Publishing**: Direct API distribution via a dedicated Publishing Router.
+- **Intelligent Scripting**: Gemini 1.5 Pro with long-term episodic memory.
 
 ## 📂 Project Structure
 - `/pipeline`: Core production logic (V1 & V2 prototypes).
@@ -16,11 +22,7 @@ TariqTube 2.0 is a serverless, event-driven AI video production suite powered by
 - `/media_generation`: Media asset creation scripts.
 - `/video_assembly`: FFmpeg/MoviePy assembly workers.
 - `/publishing`: Automated posting scripts (YouTube API).
-- `/docs`: Architecture blueprints, roadmap, and project rules.
-
-## 🛠️ Verification Milestone
-- **Successful API Upload**: [https://www.youtube.com/watch?v=bikYlOQhCQg](https://www.youtube.com/watch?v=bikYlOQhCQg)
-- **Model Stack**: Gemini-3.1-Pro-Preview, Imagen-3.0-Fast, Google Studio Voices.
+- `/docs`: Architecture blueprints, roadmap, and Asset/Series frameworks.
 
 ---
 *Clean Source of Truth for TariqTube 2.0 Rebuild*

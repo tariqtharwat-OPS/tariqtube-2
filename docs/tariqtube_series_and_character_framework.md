@@ -1,28 +1,44 @@
-# 👤 TariqTube: Series and Character Framework
+# 👤 TariqTube: Project-Centric Asset & Series Framework
 
-## 1. Core Philosophy
-TariqTube 2.0 moves from "One-off Stories" to **Episodic Series Production**. This requires a strict framework for character persistence and world-building to ensure Gemini maintains consistency over 100+ episodes.
-
-## 2. Character Persistence Matrix
-Any character introduced in a series must have a defined **Persistence Profile**:
-- **Name & Age**: Static identification.
-- **Personality**: Detailed description (2M token context allows for full backstory retention).
-- **Appearance (Imagen Prompts)**: Standardized visual descriptors to prevent "visual drift".
-    - *Example*: "Sparky the robot, small blue chassis, single large orange eye, white antennae."
-- **Growth Arc**: How the character develops over the series.
-- **Voice Profile**: Mapping to a specific Google Cloud TTS (Studio) voice ID to ensure narration consistency.
-
-## 3. World Framework
-Each series has a defined **World Context**:
-- **Setting**: Primary locations and atmosphere.
-- **Rules**: Logics of the world (e.g., animals can talk, gravity is low).
-- **History**: Previous episode summary/knowledge available to Gemini via episodic memory.
-
-## 4. Episode Ingestion Workflow
-1.  **Series Pack**: A JSON-based definition of characters, settings, and themes.
-2.  **State Tracking**: Gemini reads the "Last 3 Episode Summaries" to ensure plot continuity.
-3.  **Storyboard Generation**: Specific Imagen 3 prompts derived from the Character Persistence Profile.
-4.  **Production**: Scripting, SEO, Media Gen, and Assembly.
+## 1. The Asset-First Philosophy
+In TariqTube 2.0, **Assets** (Characters, Environments, Voice Profiles) are the foundational building blocks of a Project. They are not merely prompt descriptors but **persistent entities** stored in the Asset Manager (Firestore) to prevent visual and narrative drift.
 
 ---
-*Based on TariqTube 2.0 Production Goals*
+
+## 2. Character Persistence Matrix
+Each Character asset is a "Production Spec" used by the Production Engine:
+- **Visual Seed**: A standardized Imagen 3 prompt block that MUST be included in every scene generation.
+    - *Example*: `[Character: Sparky | Traits: spherical blue body, single orange eye, chrome finish]`
+- **Vocal Signature**: A locked Google Cloud TTS Studio voice ID and specific prosody settings.
+- **Narrative DNA**: Personality traits, catchphrases, and growth arc status.
+- **Reference Gallery**: (Future) Stored images of the character used for reference in Gemini multimodal checks.
+
+---
+
+## 3. Environment Persistence
+Environments are treated as "Stages" where episodes take place:
+- **Environment Specs**: Constant visual prompts for recurring locations (e.g., "The Magic Forest", "Ali's Workshop").
+- **Atmospheric Rules**: Color palettes, lighting styles, and specific background elements.
+
+---
+
+## 4. Series & Episode Management
+The **Series Manager** tracks the production lifecycle of sequential content:
+- **Current Pointer**: Tracks the "Last Produced Episode" and "Last Published Episode".
+- **Continuity Ledger**: A summary of previous plot points stored in the Project state to feed Gemini's context.
+- **Cadence Logic**: Scheduled intervals (e.g., "Every Monday at 6 PM") linked to the Schedule Manager.
+
+---
+
+## 5. Production Workflow (Project-Centric)
+1.  **Ingestion**: Select a Project and Series context.
+2.  **Asset Load**: The Asset Manager pulls persistent specs for required Characters and Environments.
+3.  **Episode Construction**: 
+    - Gemini generates a script using the **Continuity Ledger** + **Asset Specs**.
+    - Imagen 3 generates frames using the **Visual Seeds**.
+    - Cloud TTS generates audio using the **Vocal Signature**.
+4.  **Content Multiplier**: The Production Engine renders the primary Episode and automatically generates derivative **Teasers** and **Shorts**.
+5.  **Routing**: The Publishing Router identifies the target channels for each content unit.
+
+---
+*Based on TariqTube 2.0 Architectural Blueprint v2.1*
