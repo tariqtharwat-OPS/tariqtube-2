@@ -1,104 +1,107 @@
-# 🎬 TariqTube 2.0: Google-Native Blueprint (Master Control Document)
+# 🎬 TariqTube 2.0: Master Architectural Blueprint (v4.1)
 
-## 📋 1. Core Architectural Principle: Project-Centric Autonomy & Localization
-TariqTube 2.0 is a **Project-Centric** and **Multilingual** system. 
-- **The Project is the Source of Truth.**
-- **Episodes are synchronized production units across languages.**
-- **The Master Video is generated once; Variants swap narration and metadata.**
+## 📋 1. Core Architectural Principle: Multilingual Content Factory
+TariqTube 2.0 is an enterprise-grade, **Project-Centric** and **Multilingual** content factory. 
+- **The Project is the Source of Truth**: All logic, character persistence, and narrative memory live at the Project level.
+- **Visual-First Production**: One "Master Visual Episode" is rendered for all languages to ensure cost efficiency.
+- **Linguistic Branching**: Localized narration, SEO, and metadata are generated as sub-units of the Visual Master.
+- **Platform Agnostic**: Publishing logic is decoupled from production, enabling eventual deployment to YouTube, TikTok, Instagram, and more without core restructuring.
 
 ---
 
-## 🏗️ 2. App Logic & Data Model: System Entities
+## 🏗️ 2. Detailed Data Model: System Entities
 
-The following entities define the hierarchical structure of the system:
-
+### A. Organizational Layer
 | Entity | Description | Ownership |
 | :--- | :--- | :--- |
-| **Workspace** | High-level organizational boundary. | Base Layer |
-| **Project** | **Master Entity.** Defines style and asset registry. | Belongs to Workspace |
-| **Series** | Grouping for episodic content with sequential ordering. | Belongs to Project |
-| **Episode** | **The Production Anchor.** One story beat, one visual master. | Belongs to Series |
-| **LanguageVariant**| **The Linguistic Anchor.** Reuses master video with localized audio. | Belongs to Episode |
-| **Character** | Persistent visual/vocal identity (Visual Seed + Multi-Lang Voice Map). | Belongs to Project |
-| **Environment** | Persistent visual stage (Stage Seed). | Belongs to Project |
-| **Voice Profile** | Defined TTS configuration per character/language. | Belongs to Project |
-| **Content Unit** | Media deliverable (Full, Teaser, Short) per Language Variant. | Belongs to Variant |
-| **Channel** | A publishing destination (Specific to a language/region). | Platform Map |
-| **Publishing Route** | Mapping logic between a Variant's Content Unit and a Channel. | Workflow Config |
-| **Schedule Item** | A queued release task for a specific Language Variant. | Belongs to Router |
+| **Workspace** | Top-level container for organizational boundaries. | Base |
+| **Project** | **Master Entity.** Owns the Asset Registry, Visual Style, and target Audience. | Belongs to Workspace |
+
+### B. Production & Localization Layer
+| Entity | Description | Ownership |
+| :--- | :--- | :--- |
+| **Series** | Grouping for episodic content with sequential logic. | Belongs to Project |
+| **Episode** | **The Visual Anchor.** One story, one master video render. Shared ID across languages. | Belongs to Series |
+| **LanguageVariant**| **The Linguistic Anchor.** Localized version of an Episode. Owns audio and SEO. | Belongs to Episode |
+| **Asset** | Persistent entities (Characters, Environments) with cross-language specs. | Belongs to Project |
+
+### C. Distribution Layer
+| Entity | Description | Ownership |
+| :--- | :--- | :--- |
+| **Content Unit** | Specific media file (Full, Teaser, Short) derived from a Variant. | Belongs to Variant |
+| **Channel** | Specific social account (e.g., @TariqTubeAr-YT). Tracked per platform. | Base Map |
+| **Publishing Route** | Mapping logic (SEO templates, regional schedules). | Workflow Config |
+| **Post/Video Result** | The output of a publish (External ID, URL, Analytics Link). | Belongs to Variant |
 
 ---
 
-## 🔐 3. Ownership & Master Logic
-1.  **Source of Truth**: The `Project` record holds the master asset registry.
-2.  **Multilingual Synchronization**: `Episode` (Visual Master) → `LanguageVariant` (Audio/SEO).
-    - Episode numbering (`order`) is identical across all variants to maintain multi-channel continuity.
-3.  **Asset Persistence**: Voices are mapped at the `Project` level as a **Character -> Language -> Voice** matrix.
-4.  **Channel Decoupling**: Language Variants are routed to specific language-tracked channels (e.g., "TariqTube Arabic" vs "TariqTube English").
+## 🔐 3. LanguageVariant Implementation Detail
+A **LanguageVariant** represents a final localized product. It is an implementation-grade entity that MUST track:
+- **ID**: `{episode_id}_{language_code}` (e.g., `ep101_ar`)
+- **Language Code**: `ar`, `en`, `es`, etc.
+- **Production Spec**: 
+    - `translated_script`: The localized screenplay.
+    - `vocal_assignment`: Character -> TTS Voice Mapping (Locale-specific).
+- **SEO & Metadata**:
+    - `localized_title`, `localized_description`, `localized_hashtags`.
+    - `localized_subtitles`: (e.g., SRT/VTT paths).
+- **Media Assets**:
+    - `localized_audio_path`: GCS path to the narration track.
+    - `final_render_path`: GCS path to the multiplexed localized video.
+- **Status & Results**:
+    - `variant_status`: (Generating-Audio, Multiplexing, Ready-to-Publish).
+    - `publishing_results`: Array of `{platform_id, external_video_id, url}`.
 
 ---
 
-## 🌍 4. The Localization Layer (The "One-Video-Many-Voices" Goal)
-To ensure cost efficiency and production speed, the system implements a strict Localization Layer:
-
-1.  **Master Production**:
-    - The **Production Engine** renders the "Master Video" (Muted or BGM-only) and stores it in GCS.
-    - Status is tracked at the **Episode** level.
-2.  **Variant Generation**:
-    - For each enabled locale, the engine generates **Language-Specific Narration** using the Character's language-mapped Voice Profile.
-    - FFmpeg overlays the localized audio onto the Master Video to create the **Final Render** for that variant.
-3.  **SEO Localization**:
-    - Gemini generates localized Titles, Descriptions, and Hashtags for each variant.
-4.  **Independent Routing**:
-    - The **Publishing Router** pushes the `ar-variant` to the Arabic channel and the `en-variant` to the English channel simultaneously or on offset schedules.
+## 🎨 4. Character & Voice Localization Matrix
+Character assets are defined by a **Vocal Matrix** to maintain identity across tongues:
+- **Character Asset**: `Sparky_the_Robot`
+    - `ar`: `ar-XA-Studio-B` (Voice Signature 1)
+    - `en`: `en-US-Studio-O` (Voice Signature 2)
+    - `es`: `es-ES-Studio-F` (Voice Signature 3)
+- **Visual Persistence**: Sparky's "Visual Seed" (Imagen Prompt) remains constant regardless of the language variant being produced.
 
 ---
 
-## 📦 5. Content Unit Relationships
-A production trigger on an **Episode** entity generates multiple **Language Variants**, each spawning localized **Content Units**:
-- **Parent**: `Episode_001` (Visual Master)
-    - → **Language Variant**: `AR (Arabic)`
-        - → **Unit**: `Full MP4 (AR)`, `Teaser (AR)`, `Short (AR)`
-    - → **Language Variant**: `EN (English)`
-        - → **Unit**: `Full MP4 (EN)`, `Teaser (EN)`, `Short (EN)`
+## 🚀 5. Platform-Agnostic Publishing Router
+The system is built for **Multi-Platform expansion**:
+- **Router Logic**: Accepts a `Content Unit`, identifies its `Target Platforms` (YT, TT, IG), and executes the platform-specific API driver.
+- **Content Adaptation**: The router automatically selects the correct aspect ratio (16:9 for YouTube, 9:16 for Shorts/TikTok) based on the `Publishing Route`.
+- **Targeting**: One Project can route its English variants to a global YouTube channel and its Arabic variants to a regional Instagram account simultaneously.
 
 ---
 
-## 🚦 6. Episode & Variant Tracking
-- **Episode Status**: Tracks rendering of the Visual Master.
-- **Variant Status**: Tracks Narration Gen, Final Overlay Rendering, and Publishing.
+## 🕒 6. Scheduling & Cadence Logic
+- **Synchronized Numbering**: All language variants for `Episode 50` are produced in parallel to ensure global release parity.
+- **Release Cadence**: Defined at the **Series** level (e.g., "Mondays and Thursdays").
+- **Timezone Offsets**: The **Schedule Manager** adjusts posting times for each variant to hit peak local hours (e.g., 6 PM in Cairo vs 6 PM in London).
 
 ---
 
-## 🕒 7. Scheduling & Cadence Logic
-The **Schedule Manager** supports synchronized releases:
-- **Global Drop**: All language variants publish at the same UTC time.
-- **Regional Drop**: Variants publish at peak hours for their respective target markets (Timezone-offset).
+## 💾 7. System Infrastructure Proposal
 
----
+### Firestore Schema (v4.1)
+- `projects/{pj_id}/`
+    - `registry/`: (sub-collection) {type, visual_seed, voices: {ar: id, en: id}}
+- `series/{sr_id}/`
+    - `episodes/{ep_id}/`
+        - `metadata`: {order, visual_status, master_video_path}
+        - `variants/`: (sub-collection)
+            - `ar`: {status, script, audio, render_path, yt_id, tt_id, ig_id}
+            - `en`: {status, script, audio, render_path, yt_id, tt_id, ig_id}
+- `publishing/queue/`: {timestamp, variant_path, platform}
 
-## 💾 8. Data Schema Proposals
-
-### Firestore Schema (v4.0)
-- `projects/{id}/assets/` (sub-collection)
-    - `{asset_id}`: {type, spec, voice_map: { "ar": "VoiceID_1", "en": "VoiceID_2" }}
-- `series/{id}/episodes/` (sub-collection)
-    - `{episode_id}`: {order, visual_master_path, visual_status}
-    - `variants/`: (sub-collection)
-        - `{locale_id}`: {status, audio_path, final_render_path, video_id, seo_metadata}
-- `publishing/schedule/`: {timestamp, variant_id, content_type, channel_id}
-
-### Cloud Storage (GCS) Layout
+### Cloud Storage (GCS) Hierarchy
 - `tariqtube-production/`
-    - `projects/{pj_id}/series/{sr_id}/episodes/{ep_id}/`
-        - `master/` (Visual Master .mp4 - No Narration)
-        - `locales/`
-            - `ar/` (Arabic Audio .mp3 + Raw Metadata)
-            - `en/` (English Audio .mp3 + Raw Metadata)
-        - `locales_final/`
-            - `ar/` (Full .mp4, Teaser .mp4, Short .mp4)
-            - `en/` (Full .mp4, Teaser .mp4, Short .mp4)
+    - `projects/{pj_id}/assets/` (Master Character Ref Sheets)
+    - `episodes/{ep_id}/`
+        - `visual_master.mp4` (High-bitrate, no narration)
+        - `renders/`
+            - `ar/` (full_ar.mp4, teaser_ar.mp4, short_ar.mp4)
+            - `en/` (full_en.mp4, teaser_en.mp4, short_en.mp4)
+        - `audio/` (Local narration tracks)
 
 ---
-*Blueprint Version: 4.0 (Multilingual Implementation Specification)*
+*Blueprint Version: 4.1 (Enterprise Content Factory)*
 *Author: TariqTube Architecture Team*

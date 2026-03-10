@@ -1,23 +1,30 @@
-# 🎬 TariqTube 2.0: The AI Content Factory (Master Spec v3.0)
+# 🎬 TariqTube 2.0: The AI Content Factory (Master Spec v4.1)
 
 ## 📋 Overview
-TariqTube 2.0 is an enterprise-grade, serverless AI video production suite powered by **Google Cloud Platform**. It is designed for high-scale, consistent content creation with deep episodic logic and automated multi-platform distribution.
+TariqTube 2.0 is an enterprise-grade, serverless AI video production suite powered by **Google Cloud Platform**. It is a **Multilingual Content Factory** designed for high-scale, consistent story production and automated global distribution. 
 
-## 🏗️ Architectural Core
-TariqTube 2.0 is built on five structural pillars that distinguish it from legacy automation:
+Unlike legacy automation, TariqTube 2.0 decouples narrative logic from distribution channels, allowing a single project to scale across multiple languages and social platforms simultaneously.
 
-1.  **Project-Centric**: The system logic is anchored in the **Project**, not the social account. Production state, styles, and memory are decoupled from publishing targets.
-2.  **Series-Capable**: Native support for episodic storytelling, including seasons, episode ordering, release cadence, and episodic pointer tracking.
-3.  **Multi-Channel Capable**: Content Units (Episodes, Teasers, Shorts) are dynamically routed to multiple platforms (YouTube, TikTok, Instagram) via a decoupled Publishing Router.
-4.  **Asset-Persistent**: Core production assets (Characters, Environments, Voices) are stored in a persistent Registry to eliminate visual and narrative drift across hundreds of episodes.
-5.  **Episode-Aware**: Every episode is a structured production unit with a complete state lifecycle (Story, Production, and Publishing statuses).
+---
+
+## 🏗️ Architectural Pillars
+TariqTube 2.0 is built on five structural pillars for global scale:
+
+1.  **Project-Centric**: The "Source of Truth" is the Project, not the channel. Production memory and assets are managed independently of publishing status.
+2.  **Series-Capable**: Native management of episodic content, seasons, and plot continuity through long-term narrative memory.
+3.  **Multilingual & Localized**: "One-Video-Many-Voices" architecture. A single Visual Master render is branched into multiple Language Variants (Arabic, English, etc.) with localized narration and SEO.
+4.  **Asset-Persistent**: Persistent Character, Environment, and Voice registries eliminate visual/vocal drift across hundreds of episodes.
+5.  **Multi-Platform Routing**: A decoupled Publishing Router translates production units into platform-specific deliverables for YouTube, TikTok, Instagram, and future adapters.
+
+---
 
 ## 🚀 Key Modules
-- **Project Manager**: Master state and style governance.
-- **Series Manager**: Continuity and sequence logic.
-- **Asset Manager**: Persistent visual and vocal registries.
-- **Production Engine**: Vertex AI orchestration (Gemini 1.5 Pro, Imagen 3, Studio TTS).
-- **Publishing Router**: Headless API distribution and scheduling.
+- **Project Manager**: Style governance and Asset Registry.
+- **Series Manager**: Continuity, sequence tracking, and episodic pointers.
+- **Asset Manager**: Persistent visual seeds and Multilingual Vocal Matrices.
+- **Production Engine**: Vertex AI Orchestration (Gemini 1.5 Pro, Imagen 3, Google Studio TTS).
+- **Publishing Router**: Platform-agnostic API distribution, localized SEO, and regional scheduling.
 
 ---
 *Clean Source of Truth for TariqTube 2.0 Rebuild*
+*v4.1 Implementation Specification*
