@@ -1,28 +1,23 @@
-# 🎬 TariqTube 2.0: The AI Content Factory
+# 🎬 TariqTube 2.0: The AI Content Factory (Master Spec v3.0)
 
 ## 📋 Overview
-TariqTube 2.0 is a serverless, event-driven AI video production suite powered by **Google Cloud Platform**. It automates the creation of children's stories from script to multi-platform distribution using state-of-the-art Generative AI.
+TariqTube 2.0 is an enterprise-grade, serverless AI video production suite powered by **Google Cloud Platform**. It is designed for high-scale, consistent content creation with deep episodic logic and automated multi-platform distribution.
 
-## 🏗️ Project-Centric Architecture
-TariqTube 2.0 operates on the principle that **Projects are the Source of Truth**. Unlike legacy systems that are bound to specific accounts, TariqTube 2.0 decouples production logic from distribution channels. This allows for:
-- Persistent character and world consistency across series.
-- Routing the same content to multiple channels (YouTube, TikTok, Instagram).
-- Scaleable production independent of publishing status.
+## 🏗️ Architectural Core
+TariqTube 2.0 is built on five structural pillars that distinguish it from legacy automation:
 
-## 🚀 Key Features
-- **Project Master State**: Centralized production logic in Firestore.
-- **Persistent Assets**: character, Environment, and Voice profiles linked to Projects.
-- **Multi-Type Content**: Automated generation of Episodes, Teasers, and Shorts from a single production unit.
-- **Headless Publishing**: Direct API distribution via a dedicated Publishing Router.
-- **Intelligent Scripting**: Gemini 1.5 Pro with long-term episodic memory.
+1.  **Project-Centric**: The system logic is anchored in the **Project**, not the social account. Production state, styles, and memory are decoupled from publishing targets.
+2.  **Series-Capable**: Native support for episodic storytelling, including seasons, episode ordering, release cadence, and episodic pointer tracking.
+3.  **Multi-Channel Capable**: Content Units (Episodes, Teasers, Shorts) are dynamically routed to multiple platforms (YouTube, TikTok, Instagram) via a decoupled Publishing Router.
+4.  **Asset-Persistent**: Core production assets (Characters, Environments, Voices) are stored in a persistent Registry to eliminate visual and narrative drift across hundreds of episodes.
+5.  **Episode-Aware**: Every episode is a structured production unit with a complete state lifecycle (Story, Production, and Publishing statuses).
 
-## 📂 Project Structure
-- `/pipeline`: Core production logic (V1 & V2 prototypes).
-- `/agents`: AI orchestration (Gemini & Imagen integrations).
-- `/media_generation`: Media asset creation scripts.
-- `/video_assembly`: FFmpeg/MoviePy assembly workers.
-- `/publishing`: Automated posting scripts (YouTube API).
-- `/docs`: Architecture blueprints, roadmap, and Asset/Series frameworks.
+## 🚀 Key Modules
+- **Project Manager**: Master state and style governance.
+- **Series Manager**: Continuity and sequence logic.
+- **Asset Manager**: Persistent visual and vocal registries.
+- **Production Engine**: Vertex AI orchestration (Gemini 1.5 Pro, Imagen 3, Studio TTS).
+- **Publishing Router**: Headless API distribution and scheduling.
 
 ---
 *Clean Source of Truth for TariqTube 2.0 Rebuild*
