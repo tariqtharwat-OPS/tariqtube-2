@@ -20,29 +20,34 @@ Environments define the world logic.
 
 ---
 
-## 4. Voice Profile & Vocal Signatures
-Voice Profiles are mapped to the **Google Cloud TTS Studio** engine.
-- **Locked Vocal ID**: Fixed Studio voice ID (e.g., `en-US-Studio-O`).
-- **Signature Settings**: Static pitch (+/-), speaking rate, and volume gain.
-- **Episodic Context**: The Production Engine maintains a history of character "emotional states" from previous scenes to ensure narrative voice consistency.
+## 4. Multilingual Voice Profiles (Vocal Signatures)
+Character identity is maintained across languages through a strict **Vocal Matrix**:
+- **Character Voice Map**: Each character in the Registry is assigned a specific **Google Cloud TTS Studio** profile for every supported language.
+    - *Example (Character: Sparky)*:
+        - `ar`: `ar-XA-Studio-B` (Deep, resonant)
+        - `en`: `en-US-Studio-O` (Warm, intelligent)
+- **Signature Consistency**: Pitch and speaking rate offsets are carried over across languages where possible to maintain the character's "energy" regardless of the tongue.
+- **Episodic Context**: The Production Engine ensures that if Sparky was "surprised" in the master script, the generated audio for both `ar` and `en` variants reflects that specific prosody.
 
 ---
 
 ## 5. Series & Episode Lifecycle Integration
 The **Series Manager** maintains the production pipeline via these mechanisms:
 - **Episode Pointer**: An atomic counter in Firestore tracking `last_imported_index`, `last_produced_index`, and `last_published_index`.
-- **Episodic Memory Buffer**: A 250,000-token summary of world history and previous episode plot points, injected into Gemini 1.5 Pro's 2M context window for every new script generation.
-- **Continuity Ledger**: Track items like "Is the window broken?" or "Is the character holding a key?" across episodes.
+- **Synchronization**: Language variants for a single episode share the same `series_index` to ensure that "Episode 45" is consistent across all global channels.
+- **Episodic Memory Buffer**: Summaries are translated/maintained to ensure Gemini's context for a variant is accurate to the local language nuances.
 
 ---
 
 ## 6. Asset-Based Episode Construction Workflow
 1.  **Selection**: Project Manager identifies the Project and Series.
 2.  **Asset Pull**: Series Manager retrieves required Asset Record IDs (Firestore).
-3.  **Prompt Assembly**:
-    - Final Scene Prompt = `(Series Style Prefix) + (Character Visual Specs) + (Environment Stage Seed) + (Scene-Specific Action)`.
-4.  **Production**: Production Engine triggers parallel GCloud Run tasks for Video (Cloud Run), Audio (TTS API), and Visuals (Vertex AI).
-5.  **Status Sync**: UI tracks every stage from `Story: Approved` to `Publishing: Live`.
+3.  **Visual Master Render**: Production Engine renders the mute video master.
+4.  **Variant Branching**: 
+    - Engine reads script and pulls **Locale-Specific Voice Profiles**.
+    - Cloud TTS generates parallel audio tracks (`ar`, `en`, etc.).
+    - FFmpeg assembles localized final renders.
+5.  **Status Sync**: UI tracks every stage from `Visual Master: Done` to `Variant [locale]: Published`.
 
 ---
-*Based on TariqTube 2.0 Architectural Blueprint v3.0*
+*Based on TariqTube 2.0 Architectural Blueprint v4.0*
