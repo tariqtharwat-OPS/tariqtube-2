@@ -1,66 +1,55 @@
-# 👤 TariqTube: Asset & Series Framework (v4.1 Detail)
+# 👤 Virex Engine: Asset & Series Framework (v5.0 Detail)
 
 ## 1. Asset-First Philosophy: Global Production Specs
-In TariqTube 2.0, Assets (Characters, Environments, Voices) are **Persistent Production Units** stored in Firestore. They are initialized once in the Project Registry and then versioned as the project evolves. This eliminates visual and vocal drift over hundreds of episodes.
+In the **Virexa AI Content Factory**, Assets (Characters, Environments, Voices) are **Persistent Production Units** stored in the **Virex Registry**. They are initialized once and then versioned as the project evolves, ensuring identity continuity across multiple platforms and languages.
 
 ---
 
 ## 2. Character Registry: Multi-Tongue Identity
-Characters are the most critical assets for global series consistency and project recognition.
+Characters are the primary carriers of project branding and narrative soul.
 
-### A. Visual Identity (Imagen 3)
-- **Master Visual Seed**: A frozen, high-detail Imagen 3 prompt block.
+### A. Visual Consistency (Imagen 3)
+- **Master Visual Seed**: A static prompt fragment in the Registry defines the base appearance.
     - *Example (Sparky)*: `[Sparky]: Sphere-shaped blue metallic body, single orange digital eye, white antennae, small chrome legs.`
-- **Multimodal Audit**: Gemini 1.5 Pro performs a multimodal comparison between the "Visual Master Reference" and the "Generated Scene Frames". If deviation occurs (e.g., body shape shifts), the scene is flagged.
+- **Multimodal Drift Audit**: Gemini 1.5 Pro performs a comparison between the "Visual Master Reference" and generated scene frames. If drift occurs (e.g., eye color shifts), the scene is flagged by the **Review Layer**.
 
-### B. Vocal Identity (Cloud TTS Studio)
+### B. Vocal Consistency (Cloud TTS Studio)
 Character identity is maintained across languages through a strict **Multilingual Vocal Matrix**:
-| Locale | Voice ID | Pitch | Speaking Rate | Vocal Archetype |
+| Locale | Voice ID | Pitch | Rate | Style |
 | :--- | :--- | :--- | :--- | :--- |
-| **Arabic** | `ar-XA-Studio-B` | -2.0 | 1.05 | Wise/Patient |
-| **English** | `en-US-Studio-O` | +1.0 | 1.00 | Curious/Energetic |
+| **Arabic** | `ar-XA-Studio-B` | -2.0 | 1.05 | Narrative |
+| **English** | `en-US-Studio-O` | +1.0 | 1.00 | Professional |
 | **Spanish** | `es-ES-Studio-F` | 0.0 | 0.95 | Energetic |
 
-**Technical Rule**: The "Prosody Inheritance" engine ensures that the character's emotional state in any master scene (e.g., "excited") is translated into the localized vocal markers of every Language Variant.
+**Virex Technical Rule**: The **LocaleConfig** (Project Level) defines the default voice and character mappings for each region, allowing for consistent brand voices without manual per-episode configuration.
 
 ---
 
 ## 3. Environment Registry: Persistent Stages
-Environments provide the constant background for the Visual Master render.
-- **Stage Seed**: A static prompt fragment defining the atmosphere, lighting lux, and constant landmarks.
+Environments provide the constant background for the **Visual Master** render.
+- **Stage Seed**: A static prompt fragment defining the atmosphere, lighting, and landmarks.
 - **Visual Consistency**: The environment is rendered once per scene and shared by all localized audio tracks.
 
 ---
 
-## 4. Series Continuity & Multi-Variant Synchronization
+## 4. Optional Visual Override (Regional Localization)
+The **Virex Engine** supports localized on-screen text or regional signage through an optional **Visual Override** mechanism in the Production Pipeline:
+- **Signage Swap**: Replace English signs with Arabic/Spanish localized textures for specific renders.
+- **Master-Variant Logic**: The Engine renders the Visual Master first, then performs localized patches only where an override is defined.
+
+---
+
+## 5. Series Continuity & Multi-Variant Synchronization
 The **Series Manager** ensures that episodic progress is tracked as a unified global entity:
-- **Episode Numbering (Order)**: If `Episode 45` is released, all enabled Language Variants for `45` are synchronized and released as a block.
-- **Global Project Memory**: Gemini 1.5 Pro reads the summaries of the last 5 episodes to maintain plot logic. These summaries are maintained in a "Global Registry" so all language variants benefit from the same narrative context.
+- **Global Episode Index**: Episode `45` is the same story globally.
+- **Synchronized Posting**: All Language Variants for an episode are synchronized in the **Schedule Manager** to hit their respective regional release windows simultaneously.
 
 ---
 
-## 5. Asset-Based Infrastructure (Firestore Proposal)
-- `projects/{pj_id}/registry/assets/`
-    - `type`: 'character' | 'environment' | 'voice'
-    - `visual_seed`: (Prompt Fragment)
-    - `vocal_matrix`: {ar: id, en: id, es: id}
-    - `reference_images`: [GCS_URLs] (For multimodal drift audit)
-    - `version`: v1.0.0
+## 6. Revision History & Audit
+- All assets and variants track **Revision History**.
+- If a voice profile is changed mid-series, the `updated_at` and `change_reason` are logged to preserve the lineage of the production evolution.
 
 ---
-
-## 6. Construction Workflow (The Content Factory)
-1.  **Ingestion**: Select Project → Series → target Locales.
-2.  **Asset Pull**: Retrieve all Character/Environment IDs.
-3.  **Visual Master Render**:
-    - Script Generation.
-    - Scene Generation (Visual Seeds only).
-    - Assembly of the **Mute Visual Master MP4**.
-4.  **Local Branching (Parallel)**:
-    - **Arabic Branch**: Local Narration Gen → Overlay → Meta Gen.
-    - **English Branch**: Local Narration Gen → Overlay → Meta Gen.
-5.  **Audit & Publish**: Multimodal drift check before the Publishing Router triggers.
-
----
-*Version: 4.1 (Global Specs)*
-*Author: TariqTube Asset Governance*
+*Virex Asset Governance v5.0 (Global Standards)*
+*Author: Virexa AI Architecture Hub*

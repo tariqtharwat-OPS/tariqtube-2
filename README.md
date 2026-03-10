@@ -1,40 +1,40 @@
-# 🎬 TariqTube 2.0: The AI Content Factory (Master Spec v4.1)
+# 🎬 Virexa AI: The Enterprise Content Factory (Master Spec v5.0)
 
 ## 📋 Overview
-TariqTube 2.0 is an enterprise-grade, serverless AI video production suite powered by **Google Cloud Platform**. It is a **Multilingual Content Factory** designed for high-scale, consistent story production and automated global distribution.
+**Virexa AI** represents the next generation of automated, serverless video production. Powered by the **Virex Engine**, it is an enterprise-grade suite designed for global, multilingual content production at scale. 
 
-The system decouples narrative logic from distribution channels, allowing a single project to scale across multiple languages and social platforms (YouTube, TikTok, Instagram) simultaneously.
+Virexa AI decouples story logic from distribution platforms, allowing one **Project** to scale across multiple languages, regions, and social networks (YouTube, TikTok, Instagram) while maintaining strictly synchronized episodic memory.
 
 ---
 
 ## 🏗️ Architectural Pillars
-TariqTube 2.0 is built on five structural pillars for global scale:
+The **Virex Engine** is built on five core structural pillars:
 
-1.  **Project-Centric**: The "Source of Truth" is the Project, not the channel. Production memory and assets are managed independently of publishing status.
-2.  **Series-Capable**: Native management of episodic content, seasons, and plot continuity through long-term narrative memory.
-3.  **Multilingual & Localized**: "One-Video-Many-Voices" architecture. A single Visual Master render is branched into multiple Language Variants (Arabic, English, etc.) with localized narration and SEO.
-4.  **Asset-Persistent**: Persistent Character, Environment, and Voice registries eliminate visual/vocal drift across hundreds of episodes.
-5.  **Multi-Platform Routing**: A decoupled Publishing Router translates production units into platform-specific deliverables for YouTube, TikTok, Instagram, and future adapters.
+1.  **Project-Centric Logic**: The "Source of Truth" is the Project. Production state, styles, and persistent memories are managed independently of publishing status.
+2.  **Asset-Persistent Registry**: Core visual and vocal characters are preserved as immutable production units to eliminate drift across hundreds of episodes.
+3.  **Virex Localization Layer**: "One-Video-Many-Voices" architecture. A single **Visual Master** render branches into multiple **Language Variants** with localized narration, signage, and SEO.
+4.  **Virex Governance & Review**: integrated human-in-the-loop review layers (Virex Studio) for scripts, thumbnails, and final renders.
+5.  **Multi-Platform Publishing Router**: A decoupled, adapter-based system for synchronized global drops across YouTube, TikTok, and Instagram.
 
 ---
 
-## 📂 Project Structure (Repository Docs)
-- **README.md**: Overview and architectural pillars.
-- **docs/tariqtube_google_native_blueprint.md**: Master control document (v4.1).
-- **docs/tariqtube_series_and_character_framework.md**: Asset & series persistence logic.
-- **docs/tariqtube_execution_phases.md**: Implementation roadmap and verification milestones.
-- **docs/tariqtube_migration_notes.md**: V1 to V2 migration history.
+## 📂 Project Organization
+- [Virex Engine Blueprint](docs/virex_engine_blueprint.md): Master control document (v5.0).
+- [Series & Asset Framework](docs/virex_series_framework.md): Identity and continuity governance.
+- [Execution Roadmap](docs/virex_execution_roadmap.md): Implementation phases and milestones.
+- [Drift Governance](docs/virex_drift_governance.md): Multimodal consistency rules.
 
 ---
 
 ## 🚀 Key Modules
-- **Project Manager**: Style governance and Asset Registry.
-- **Series Manager**: Continuity, sequence tracking, and episodic pointers.
-- **Asset Manager**: Persistent visual seeds and Multilingual Vocal Matrices (Character -> Lang -> Voice).
-- **Production Engine**: Vertex AI Orchestration (Gemini 1.5 Pro, Imagen 3, Google Studio TTS).
-- **Publishing Router**: Platform-agnostic API distribution, localized SEO, and regional scheduling.
+- **Virex Project Manager**: Global state, style governance, and **LocaleConfig**.
+- **Virex Series Manager**: Plot continuity and episodic logic.
+- **Virex Asset Manager**: Persistent visual registries and the **Multilingual Vocal Matrix**.
+- **Virex Production Engine**: Vertex AI orchestration (Gemini 1.5 Pro, Imagen 3, Google Studio TTS).
+- **Virex Publishing Router**: Platform-agnostic distribution, localized SEO, and regional scheduling.
+- **Virex Studio (Review UI)**: Governance, analytics, and performance monitoring.
 
 ---
-*Clean Source of Truth for TariqTube 2.0 Rebuild*
-*Architecture Version: 4.1 (Global Scale)*
-*Verification Milestone (Prototype v2)*: [Watch Verified Video Post](https://www.youtube.com/watch?v=bikYlOQhCQg)
+*Virexa AI: The Source of Truth for Enterprise AI Content*
+*Engine Version: Virex 1.0 (v5.0 Architecture)*
+*Verified Pilot Prototype*: [Watch Production Sample](https://www.youtube.com/watch?v=bikYlOQhCQg)

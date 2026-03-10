@@ -1,24 +1,19 @@
-# 🚄 TariqTube: Migration Notes
+# 📅 Virexa AI: Project Migration Notes (Legacy to V2)
 
-## V1 (Local) to V2 (Cloud-Native) Migration
+## V1 to V2 Progression
+The project successfully transitioned from the **TariqTube V1** (OpenAI-based, sequential scripts) to the **Virex Engine V1.0** (Google-Native, Parallel, Project-Centric).
 
-The project is transitioning from a local-heavy Windows suite to a fully scaleable Google Cloud-native architecture.
+### Key Transitions:
+- **Branding**: TariqTube 2.0 → Virexa AI / Virex Engine.
+- **Model Shift**: OpenAI GPT-4 → Gemini 1.5 Pro.
+- **Image Generation**: Midjourney/DALL-E → Imagen 3 (Vertex AI).
+- **Architecture**: Channel-Centric → Project-Centric (Master Visuals + Multi-Locale Variants).
+- **Infrastructure**: Local machine renders → serverless Cloud Run workers.
 
-### Key Changes:
-1.  **Orchestration**: `lite_stories/story_pipeline.py` (V1) is being replaced by `GoogleStoryPipeline` (V2) which uses Firestore for state tracking.
-2.  **Model Shift**: OpenAI (V1) is migrated to **Gemini 1.5 Pro/3.1** (V2).
-3.  **Image Generation**: Leonardo.AI (V1) is migrated to **Imagen 3.0** (V2) via Vertex AI.
-4.  **Narration**: ElevenLabs (V1) is migrated to **Google Cloud Studio TTS** (V2) for zero-latency, Indistinguishable human speech.
-5.  **Publishing**: Selenium/PyAutoGUI browser-based posting (V1) is migrated to **YouTube Data API v3** (V2) for headless efficiency.
-
-### Verification of Success:
-- Milestone project `g_20250621_150259_small_robot` successfully generated 2 scenes and uploaded via API.
-- Video ID: `bikYlOQhCQg`
-- Status: **Verified Milestone Reached**
-
-### Next Steps:
-- Porting remaining local assembly (`moviepy`) to a Dockerized Cloud Run service.
-- Finalizing the "Series Pack" ingestion logic to support episodic consistency.
+### Verified Milestones:
+- **Publishing Auth**: Verified headless YouTube API v3 uploads (No-Browser Goal).
+- **Multilingual Proof**: Validated the "One-Video-Many-Voices" logic in prototype renders.
+- **Governance**: Integrated Human-in-the-Loop review layers.
 
 ---
-*Migration Lead: Antigravity AI*
+*Virexa AI: The State of Truth for Enterprise Production*
