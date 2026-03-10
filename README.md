@@ -1,9 +1,9 @@
 # 🎬 TariqTube 2.0: The AI Content Factory (Master Spec v4.1)
 
 ## 📋 Overview
-TariqTube 2.0 is an enterprise-grade, serverless AI video production suite powered by **Google Cloud Platform**. It is a **Multilingual Content Factory** designed for high-scale, consistent story production and automated global distribution. 
+TariqTube 2.0 is an enterprise-grade, serverless AI video production suite powered by **Google Cloud Platform**. It is a **Multilingual Content Factory** designed for high-scale, consistent story production and automated global distribution.
 
-Unlike legacy automation, TariqTube 2.0 decouples narrative logic from distribution channels, allowing a single project to scale across multiple languages and social platforms simultaneously.
+The system decouples narrative logic from distribution channels, allowing a single project to scale across multiple languages and social platforms (YouTube, TikTok, Instagram) simultaneously.
 
 ---
 
@@ -18,13 +18,23 @@ TariqTube 2.0 is built on five structural pillars for global scale:
 
 ---
 
+## 📂 Project Structure (Repository Docs)
+- **README.md**: Overview and architectural pillars.
+- **docs/tariqtube_google_native_blueprint.md**: Master control document (v4.1).
+- **docs/tariqtube_series_and_character_framework.md**: Asset & series persistence logic.
+- **docs/tariqtube_execution_phases.md**: Implementation roadmap and verification milestones.
+- **docs/tariqtube_migration_notes.md**: V1 to V2 migration history.
+
+---
+
 ## 🚀 Key Modules
 - **Project Manager**: Style governance and Asset Registry.
 - **Series Manager**: Continuity, sequence tracking, and episodic pointers.
-- **Asset Manager**: Persistent visual seeds and Multilingual Vocal Matrices.
+- **Asset Manager**: Persistent visual seeds and Multilingual Vocal Matrices (Character -> Lang -> Voice).
 - **Production Engine**: Vertex AI Orchestration (Gemini 1.5 Pro, Imagen 3, Google Studio TTS).
 - **Publishing Router**: Platform-agnostic API distribution, localized SEO, and regional scheduling.
 
 ---
 *Clean Source of Truth for TariqTube 2.0 Rebuild*
-*v4.1 Implementation Specification*
+*Architecture Version: 4.1 (Global Scale)*
+*Verification Milestone (Prototype v2)*: [Watch Verified Video Post](https://www.youtube.com/watch?v=bikYlOQhCQg)
