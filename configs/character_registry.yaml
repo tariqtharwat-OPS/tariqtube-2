@@ -1,0 +1,30 @@
+characters:
+  faris:
+    role: protagonist
+    master_asset: assets/characters/faris/faris_master.png
+    vocal_matrix:
+      ar: "ar-XA-Studio-B"
+      en: "en-US-Studio-O"
+    age: 14
+    heritage: egyptian_italian
+
+  merit:
+    role: ai_guardian
+    master_asset: assets/characters/merit/merit_master.png
+    vocal_matrix:
+      ar: "ar-XA-Studio-V"
+      en: "en-US-Studio-Q"
+
+  father:
+    role: archaeologist
+    master_asset: assets/characters/faris_family/father_master.png
+    vocal_matrix:
+      ar: "ar-XA-Wavenet-B"
+      en: "en-US-Wavenet-D"
+
+  mother:
+    role: linguist
+    master_asset: assets/characters/faris_family/mother_master.png
+    vocal_matrix:
+      ar: "ar-XA-Wavenet-A"
+      en: "en-US-Wavenet-F"
